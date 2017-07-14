@@ -3,6 +3,7 @@
 #include<string>
 using namespace std;
 
+//输入中文时无法正确输出，应该与编码有关
 
 string getReversedStr(string str);
 
