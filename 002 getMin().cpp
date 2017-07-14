@@ -16,4 +16,5 @@ int main(){
 	long x,y;
 	cin>>x;cin>>y;
 	cout<<getMin(x,y);	
+	system("pause");
 }
