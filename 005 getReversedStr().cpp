@@ -1,4 +1,4 @@
-#include<cstdio>
+ï»¿#include<cstdio>
 #include<iostream>
 #include<string>
 using namespace std;
@@ -9,7 +9,7 @@ string getReversedStr(string str);
 
 int main(){
 	string str;
-	cout<<"ÇëÊäÈë×Ö·û´®£º"; cin>>str;
+	cout<<"è¯·è¾“å…¥å­—ç¬¦ä¸²ï¼š"; cin>>str;
 	cout<<getReversedStr(str)<<endl;
 	system("pause");
 }
