@@ -3,14 +3,13 @@
 #include<string>
 using namespace std;
 
-//输入中文时无法正确输出，应该与编码有关
 
 string getReversedStr(string str);
 
 
 int main(){
 	string str;
-	cout<<"请输入字符串："; cin>>str;
+	cout<<"�������ַ�����"; cin>>str;
 	cout<<getReversedStr(str)<<endl;
 	system("pause");
 }
