@@ -118,7 +118,6 @@ num *num_add(num *head1,num *head2){
 	}
 	return head;
 }
-
 //=====================================
 
 
