@@ -135,8 +135,8 @@ int main(){
 	num *h2 = num_initLink(getStr());
 	if(h2==NULL){cout<<"·Ç·¨×Ö·û£¡";return 0; }
 	
-	num_coutAll(h1);
-	num_coutAll(h2);
+	//num_coutAll(h1);
+	//num_coutAll(h2);
 	
 	num *r=num_add(h1,h2);
 	num_coutAll(r);
