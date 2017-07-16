@@ -1,23 +1,10 @@
-Ôªø#include<cstdio>
+#include<cstdio>
 #include<iostream>
 using namespace std;
 
 void swc(int &a,int &b){int c=a;a=b;b=c;}
 
-//int array [0]‰∏∫Êï∞ÊçÆ‰∏™Êï∞Ôºå[1]~[len]‰∏∫Êï∞ÊçÆ 
-void selectSort(int r[]){
-	int len=r[0];
-	for(int i=1;i<=len;i++){
-		int max_k=i;
-		for(int j=i;j<=len;j++){
-			if(r[j]>r[max_k]){
-				max_k=j;
-			}
-		}
-		swc(r[i],r[max_k]);
-	}
-}
-
+//int array [0]Œ™ ˝æ›∏ˆ ˝£¨[1]~[len]Œ™ ˝æ› 
 int* initArray(){
 	int len=0;
 	cin>>len;
@@ -41,16 +28,51 @@ void coutArray(int a[]){
 	cout<<endl;
 }
 
+//===============================
+//—°‘Ò≈≈–Ú 
+void selectSort(int r[]){
+	int len=r[0];
+	for(int i=1;i<=len;i++){
+		int max_k=i;
+		for(int j=i;j<=len;j++){
+			if(r[j]>r[max_k]){
+				max_k=j;
+			}
+		}
+		swc(r[i],r[max_k]);
+	}
+}
+
+//√∞≈›≈≈–Ú 
+void bubbleSort(int r[]){
+	int len=r[0];
+	bool ifSwc=false;
+	while(ifSwc){
+		for(int i=1;i<=len-1;i++){
+			if(r[i]<r[i+1]){
+				swc(r[i],r[i+1]);
+				ifSwc=true;
+			}
+		}	
+	}
+}
+//================================
+
+
 int main(){
 	int *o=initArray();
 	cout<<endl;
 	cout<<"origin:"<<endl;coutArray(o);cout<<endl;
 	
 	int *b=new int[o[0]];
-	b=o;
 	
+	b=o;
 	selectSort(b);
 	cout<<"selectSorted:"<<endl;coutArray(b);cout<<endl;
+	
+	b=o;
+	bubbleSort(b);
+	cout<<"bubbleSorted:"<<endl;coutArray(b);cout<<endl;
 	
 	system("pause");
 }
