@@ -1,10 +1,10 @@
-#include<cstdio>
+ï»¿#include<cstdio>
 #include<iostream>
 using namespace std;
 
 void swc(int &a,int &b){int c=a;a=b;b=c;}
 
-//int array [0]ÎªÊı¾İ¸öÊı£¬[1]~[len]ÎªÊı¾İ 
+//int array [0]ä¸ºæ•°æ®ä¸ªæ•°ï¼Œ[1]~[len]ä¸ºæ•°æ® 
 void selectSort(int r[]){
 	int len=r[0];
 	for(int i=1;i<=len;i++){
