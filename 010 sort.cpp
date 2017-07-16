@@ -56,6 +56,22 @@ void bubbleSort(int r[]){
 		}	
 	}
 }
+
+//插入排序 
+void insertSort(int r[]){
+	int len=r[0];
+	
+	for(int i=2;i<=len;i++){
+		int preVal=r[i];				//抽出待插入的数据,留下一个空位 
+		 
+		int j=i-1;
+		while(preVal>r[j]&&j>=1){		//将数据后移，找到正确空位 
+			r[j+1]=r[j];
+			j--;
+		}
+		r[j+1]=preVal;					//将待插入数据放入空位 
+	}
+}
 //================================
 
 
@@ -73,6 +89,10 @@ int main(){
 	b=o;
 	bubbleSort(b);
 	cout<<"bubbleSorted:"<<endl;coutArray(b);cout<<endl;
+	
+	b=o;
+	insertSort(b);
+	cout<<"insertSorted:"<<endl;coutArray(b);cout<<endl;
 	
 	system("pause");
 }
