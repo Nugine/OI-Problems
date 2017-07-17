@@ -1,8 +1,10 @@
 #include<cstdio>
 #include<iostream>
 #include<cstring>
+#include<fstream>
+#include<ostream> 
+#include<time.h>
 using namespace std;
-
 void swc(int &a,int &b){int c=a;a=b;b=c;}
 
 //int array [0]为数据个数，[1]~[len]为数据 
@@ -22,9 +24,9 @@ void coutArray(int a[]){
 	int len=a[0];
 	cout<<"\tlen:"<<len<<endl;
 	
-	cout<<"\tdata:";
+	cout<<"\tdata:\n";
 	for(int i=1;i<=len;i++){
-		cout<<a[i]<<",";
+		cout<<a[i]<<"\t";
 	}
 	cout<<endl;
 }
@@ -104,27 +106,51 @@ void mergeSort(int r[],int st,int ed){
 
 
 int main(){
+	ifstream fin("sort_input.txt");
+	//ofstream fout("sort_output.txt");
+	streambuf *cinbackup=cin.rdbuf(fin.rdbuf());
+	//streambuf *coutbackup=cout.rdbuf(fout.rdbuf());
+	
+	
 	int *o=initArray();
-	cout<<endl;
 	cout<<"origin:"<<endl;coutArray(o);cout<<endl;
 	
 	int *b=new int[o[0]+1];
+	double time[4];clock_t st,ed;
+	
 	
 	memcpy(b,o,sizeof(int)*(o[0]+1));
-	selectSort(b);
+	st=clock();
+		selectSort(b);
+	ed=clock();time[0]=(double)(ed-st);
 	cout<<"selectSorted:"<<endl;coutArray(b);cout<<endl;
-
+	
+	
 	memcpy(b,o,sizeof(int)*(o[0]+1));
-	bubbleSort(b);
+	st=clock();
+		bubbleSort(b);
+	ed=clock();time[1]=(double)(ed-st);
 	cout<<"bubbleSorted:"<<endl;coutArray(b);cout<<endl;
 	
 	memcpy(b,o,sizeof(int)*(o[0]+1));
-	insertSort(b);
+	st=clock();
+		insertSort(b);
+	ed=clock();time[2]=(double)(ed-st);
 	cout<<"insertSorted:"<<endl;coutArray(b);cout<<endl;
 
 	memcpy(b,o,sizeof(int)*(o[0]+1));
-	mergeSort(b,1,b[0]);
+	st=clock();
+		mergeSort(b,1,b[0]);
+	ed=clock();time[3]=(double)(ed-st);
 	cout<<"mergeSorted:"<<endl;coutArray(b);cout<<endl;
+	
+	cout<<"selectSort Time:"<<time[0]<<endl;
+	cout<<"bubbleSort Time:"<<time[1]<<endl;
+	cout<<"insertSort Time:"<<time[2]<<endl;
+	cout<<"mergeSort Time:"<<time[3]<<endl;
+	
+	cin.rdbuf(cinbackup);
+	//cout.rdbuf(coutbackup);
 	
 	system("pause");
 }
