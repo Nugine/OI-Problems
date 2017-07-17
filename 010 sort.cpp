@@ -1,5 +1,6 @@
 #include<cstdio>
 #include<iostream>
+#include<cstring>
 using namespace std;
 
 void swc(int &a,int &b){int c=a;a=b;b=c;}
@@ -46,12 +47,13 @@ void selectSort(int r[]){
 //冒泡排序 
 void bubbleSort(int r[]){
 	int len=r[0];
-	bool ifSwc=false;
-	while(ifSwc){
+	bool ifSwapped=true;
+	while(ifSwapped){
+		ifSwapped=false;
 		for(int i=1;i<=len-1;i++){
 			if(r[i]<r[i+1]){
 				swc(r[i],r[i+1]);
-				ifSwc=true;
+				ifSwapped=true;
 			}
 		}	
 	}
@@ -60,16 +62,14 @@ void bubbleSort(int r[]){
 //插入排序 
 void insertSort(int r[]){
 	int len=r[0];
-	
 	for(int i=2;i<=len;i++){
-		int preVal=r[i];				//抽出待插入的数据,留下一个空位 
-		 
+		int preVal=r[i];
 		int j=i-1;
-		while(preVal>r[j]&&j>=1){		//将数据后移，找到正确空位 
+		while(preVal>r[j]&&j>=1){
 			r[j+1]=r[j];
 			j--;
 		}
-		r[j+1]=preVal;					//将待插入数据放入空位 
+		r[j+1]=preVal; 
 	}
 }
 //================================
@@ -80,20 +80,20 @@ int main(){
 	cout<<endl;
 	cout<<"origin:"<<endl;coutArray(o);cout<<endl;
 	
-	int *b=new int[o[0]];
+	int *b=new int[o[0]+1];
 	
-	b=o;
+	memcpy(b,o,sizeof(int)*(o[0]+1));
 	selectSort(b);
 	cout<<"selectSorted:"<<endl;coutArray(b);cout<<endl;
-	
-	b=o;
+
+	memcpy(b,o,sizeof(int)*(o[0]+1));
 	bubbleSort(b);
 	cout<<"bubbleSorted:"<<endl;coutArray(b);cout<<endl;
 	
-	b=o;
+	memcpy(b,o,sizeof(int)*(o[0]+1));
 	insertSort(b);
 	cout<<"insertSorted:"<<endl;coutArray(b);cout<<endl;
-	
+
 	system("pause");
 }
 
