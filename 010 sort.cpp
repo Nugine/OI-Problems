@@ -73,7 +73,7 @@ void insertSort(int r[]){
 	}
 }
 
-//πÈ≤¢≈≈–Ú 
+//µ›πÈπÈ≤¢≈≈–Ú 
 void mergeSort(int r[],int st,int ed){
 	if(st==ed)return;
 	
