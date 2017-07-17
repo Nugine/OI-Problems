@@ -26,7 +26,7 @@ void coutArray(int a[]){
 	
 	cout<<"\tdata:\n";
 	for(int i=1;i<=len;i++){
-		cout<<a[i]<<"\t";
+		cout<<a[i]<<endl;
 	}
 	cout<<endl;
 }
