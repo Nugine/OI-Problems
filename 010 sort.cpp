@@ -72,6 +72,34 @@ void insertSort(int r[]){
 		r[j+1]=preVal; 
 	}
 }
+
+//πÈ≤¢≈≈–Ú 
+void mergeSort(int r[],int st,int ed){
+	if(st==ed)return;
+	
+	int m=(st+ed)/2;
+	mergeSort(r,st,m);mergeSort(r,m+1,ed);
+	
+	int i=st,j=m+1,k=0,t[ed-st+1];
+	while(i<=m && j<=ed){
+		if(r[i]>r[j]){
+			t[k]=r[i];i++;
+		}
+		else{
+			t[k]=r[j];j++;
+		}
+		k++;
+	}
+	while(i<=m){
+		t[k]=r[i];i++;k++;
+	}
+	while(j<=ed){
+		t[k]=r[j];j++;k++;
+	}
+	for(k=st;k<=ed;k++){
+		r[k]=t[k-st];
+	}
+}
 //================================
 
 
@@ -94,6 +122,10 @@ int main(){
 	insertSort(b);
 	cout<<"insertSorted:"<<endl;coutArray(b);cout<<endl;
 
+	memcpy(b,o,sizeof(int)*(o[0]+1));
+	mergeSort(b,1,b[0]);
+	cout<<"mergeSorted:"<<endl;coutArray(b);cout<<endl;
+	
 	system("pause");
 }
 
