@@ -26,7 +26,7 @@ void coutArray(int a[]){
 	
 	cout<<"\tdata:\n";
 	for(int i=1;i<=len;i++){
-		cout<<a[i]<<endl;
+		cout<<a[i]<<"\t";
 	}
 	cout<<endl;
 }
@@ -102,6 +102,21 @@ void mergeSort(int r[],int st,int ed){
 		r[k]=t[k-st];
 	}
 }
+
+void quickSort(int r[],int st,int ed){
+	int mid=r[(st+ed)/2];
+	int i=st,j=ed;
+	while(i<=j){
+		while(r[i]>mid)i++;
+		while(r[j]<mid)j--;
+		if(i<=j){
+			swc(r[i],r[j]);
+			i++;j--;
+		}
+	}
+	if(st<j)quickSort(r,st,j);
+	if(i<ed)quickSort(r,i,ed);
+}
 //================================
 
 
@@ -116,7 +131,7 @@ int main(){
 	cout<<"origin:"<<endl;coutArray(o);cout<<endl;
 	
 	int *b=new int[o[0]+1];
-	double time[4];clock_t st,ed;
+	double time[5];clock_t st,ed;
 	
 	
 	memcpy(b,o,sizeof(int)*(o[0]+1));
@@ -144,10 +159,18 @@ int main(){
 	ed=clock();time[3]=(double)(ed-st);
 	cout<<"mergeSorted:"<<endl;coutArray(b);cout<<endl;
 	
+	
+	memcpy(b,o,sizeof(int)*(o[0]+1));
+	st=clock();
+		quickSort(b,1,b[0]);
+	ed=clock();time[4]=(double)(ed-st);
+	cout<<"quickSorted:"<<endl;coutArray(b);cout<<endl;
+	
 	cout<<"selectSort Time:"<<time[0]<<endl;
 	cout<<"bubbleSort Time:"<<time[1]<<endl;
 	cout<<"insertSort Time:"<<time[2]<<endl;
 	cout<<"mergeSort Time:"<<time[3]<<endl;
+	cout<<"quickSort Time:"<<time[4]<<endl;
 	
 	cin.rdbuf(cinbackup);
 	//cout.rdbuf(coutbackup);
