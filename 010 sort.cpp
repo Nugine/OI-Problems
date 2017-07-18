@@ -26,10 +26,11 @@ void coutArray(int a[]){
 	
 	cout<<"\tdata:\n";
 	for(int i=1;i<=len;i++){
-		cout<<a[i]<<"\t";
+		cout<<a[i]<<"\t\t\t\t";
 	}
 	cout<<endl;
 }
+
 
 //===============================
 //Ñ¡ÔñÅÅÐò 
@@ -103,6 +104,7 @@ void mergeSort(int r[],int st,int ed){
 	}
 }
 
+//¿ìËÙÅÅÐò 
 void quickSort(int r[],int st,int ed){
 	int mid=r[(st+ed)/2];
 	int i=st,j=ed;
@@ -117,6 +119,20 @@ void quickSort(int r[],int st,int ed){
 	if(st<j)quickSort(r,st,j);
 	if(i<ed)quickSort(r,i,ed);
 }
+
+//Ï£¶ûÅÅÐò
+void shellSort(int r[]){
+	int len=r[0];
+	for(int delta=len/2;delta>=1;delta/=2){
+		for(int i=delta+1;i<=len;i++){
+			int val=r[i];int j;
+			for(j=i-delta;j>=1&&r[j]<val;j-=delta){
+				r[j+delta]=r[j];
+			}
+			r[j+delta]=val;
+		}
+	}
+}
 //================================
 
 
@@ -126,51 +142,56 @@ int main(){
 	streambuf *cinbackup=cin.rdbuf(fin.rdbuf());
 	//streambuf *coutbackup=cout.rdbuf(fout.rdbuf());
 	
-	
 	int *o=initArray();
 	cout<<"origin:"<<endl;coutArray(o);cout<<endl;
 	
 	int *b=new int[o[0]+1];
-	double time[5];clock_t st,ed;
-	
+	int time[6];clock_t st,ed;
 	
 	memcpy(b,o,sizeof(int)*(o[0]+1));
 	st=clock();
 		selectSort(b);
-	ed=clock();time[0]=(double)(ed-st);
+	ed=clock();time[0]=ed-st;
 	cout<<"selectSorted:"<<endl;coutArray(b);cout<<endl;
 	
 	
 	memcpy(b,o,sizeof(int)*(o[0]+1));
 	st=clock();
 		bubbleSort(b);
-	ed=clock();time[1]=(double)(ed-st);
+	ed=clock();time[1]=ed-st;
 	cout<<"bubbleSorted:"<<endl;coutArray(b);cout<<endl;
 	
 	memcpy(b,o,sizeof(int)*(o[0]+1));
 	st=clock();
 		insertSort(b);
-	ed=clock();time[2]=(double)(ed-st);
+	ed=clock();time[2]=ed-st;
 	cout<<"insertSorted:"<<endl;coutArray(b);cout<<endl;
 
 	memcpy(b,o,sizeof(int)*(o[0]+1));
 	st=clock();
 		mergeSort(b,1,b[0]);
-	ed=clock();time[3]=(double)(ed-st);
+	ed=clock();time[3]=ed-st;
 	cout<<"mergeSorted:"<<endl;coutArray(b);cout<<endl;
 	
 	
 	memcpy(b,o,sizeof(int)*(o[0]+1));
 	st=clock();
 		quickSort(b,1,b[0]);
-	ed=clock();time[4]=(double)(ed-st);
+	ed=clock();time[4]=ed-st;
 	cout<<"quickSorted:"<<endl;coutArray(b);cout<<endl;
 	
-	cout<<"selectSort Time:"<<time[0]<<endl;
-	cout<<"bubbleSort Time:"<<time[1]<<endl;
-	cout<<"insertSort Time:"<<time[2]<<endl;
-	cout<<"mergeSort Time:"<<time[3]<<endl;
-	cout<<"quickSort Time:"<<time[4]<<endl;
+	memcpy(b,o,sizeof(int)*(o[0]+1));
+	st=clock();
+		shellSort(b);
+	ed=clock();time[5]=ed-st;
+	cout<<"shellSorted:"<<endl;coutArray(b);cout<<endl;
+	
+	cout<<"selectSort Time:"<<time[0]<<"ms"<<endl;
+	cout<<"bubbleSort Time:"<<time[1]<<"ms"<<endl;
+	cout<<"insertSort Time:"<<time[2]<<"ms"<<endl;
+	cout<<"mergeSort Time:"<<time[3]<<"ms"<<endl;
+	cout<<"quickSort Time:"<<time[4]<<"ms"<<endl;
+	cout<<"shellSort Time:"<<time[5]<<"ms"<<endl;
 	
 	cin.rdbuf(cinbackup);
 	//cout.rdbuf(coutbackup);
